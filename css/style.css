@@ -8,14 +8,9 @@
 }
 
 #portada{
-    background: url(img/portada.jpg) no-repeat fixed center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100%;
-    width: 100% ;
-    text-align: center;
+    background-image: url(../img/portada.jpg);
+    height: 100vh;
+    width: 100%;
 }
 
 .item{
@@ -39,6 +34,13 @@
 }
 
 body{
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
 }
 
+#explorar{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    background-color: #DAA520;
+    color: #000000;
+}

@@ -1,10 +1,33 @@
 #navbar{
-    display: flex;
-    justify-content: space-around;
-    position: sticky;
-    background: #000000;
+  position: sticky;
+  top: 0;
+  background-color: #000000;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
 }
 
 .item{
     color: #ffffff;
+    font-family: 'Sen', sans-serif;
 }
+
+.item:hover{
+    color: #DAA520;
+    text-decoration: none;
+}
+
+.tittle{
+    text-align: center;
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 48px;
+    padding: 8px;
+}
+
+body{
+    background-color: #E5E5E5;
+}
+

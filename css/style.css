@@ -37,11 +37,11 @@ body{
     background-color: #e5e5e5;
 }
 
-#explorar{
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    background-color: #DAA520;
-    color: #000000;
-    border
+#map{
+    text-align: center;
 }
+
+#footer-text{
+    color: #000000;
+}
+

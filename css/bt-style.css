@@ -9843,7 +9843,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #000000 !important;
 }
 
 .text-black-50 {
@@ -10487,4 +10487,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 .newsImage {
   border: black 5px solid;
+}
+
+.imagen-noticias {
+  border: black 3px solid;
 }

@@ -20,7 +20,7 @@ let cargarProductos = () => {
             
             let link = "portfolioModal" + count
             count++
-            portFolio(link,element)
+            portFolioNoticia(link,element)
             link = "#" + link
             a.setAttribute("href",link)
 
@@ -64,7 +64,7 @@ let cargarProductos = () => {
 
 }
 
-let portFolio = (id1,element) => {
+let portFolioNoticia = (id1,element) => {
 
     let body = document.getElementsByTagName("body")[0]
 

@@ -7,10 +7,23 @@
   justify-content: space-around;
 }
 
-#portada{
+/*#portada{
     background-image: url(../img/portada.jpg);
     height: 100vh;
     width: 100%;
+}*/
+
+#finder{
+    height: 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 15px;
+    margin-top: 0;
+    width: 60vw;
+}
+
+#productos-container{
+    text-align: center;
 }
 
 .item{

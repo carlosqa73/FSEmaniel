@@ -1,6 +1,6 @@
 let cargarProductos = () => {
 
-    fetch("data/datos.json")
+    fetch("data/productos.json")
     .then(response => response.json())
     .then((data) => {
 
@@ -143,24 +143,22 @@ let portFolio = (id1,element) => {
 
 let buscar = (e) =>{
     let textInput = e.target.value
-    let elements = document.getElementsByClassName("producto")
     let key = textInput.toLowerCase()
-  
+
+    let elements = document.getElementsByClassName("producto")
+
     for(let element of elements){
-  
       let words = element.getElementsByClassName("nombre-producto")[0].textContent
       let wordSet = words.toLowerCase()
 
-      console.log(words)
-      
-      if(!(words.includes(key))){
+      if(!(wordSet.includes(key))){
           element.style.display = "none"
       }else{
           element.style.display = ""
       }
   
     }
-  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     cargarProductos();

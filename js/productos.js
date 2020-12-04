@@ -32,7 +32,7 @@ let cargarProductos = () => {
             i.setAttribute("class","fas fa-plus fa-3x")
 
             let img = document.createElement("img")
-            img.setAttribute("class","img-fluid")
+            img.setAttribute("class","img-fluid img-producto")
             img.setAttribute("src",element.imagen)
             //img.setAttribute("height","450")
             img.setAttribute("width","415")

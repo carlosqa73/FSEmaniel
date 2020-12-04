@@ -1,0 +1,71 @@
+body{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    background-color:orange;
+}
+
+.all{
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    height: 200px;
+}
+ h1{
+     color: black;
+     text-align: center;
+     font-family:monospace;
+     padding-top: 200px;
+     padding-bottom: 75px;
+     font-size: 400%;
+ }
+
+ h2{
+    color: black;
+    font-family:monospace;
+    text-align: right;
+    height: 20px;
+    vertical-align: text-top;
+    margin: 0px;
+    padding-top: 5px;
+    padding-right: 5px;
+ }
+
+ .center{
+     display: grid;
+     gap: 10px;
+     grid-template-columns: 2fr 1fr;
+     height: 150px;
+     align-items: right;
+ }
+
+ .user{
+     width: 475px;
+     height: 30px;
+     font-family: monospace;
+     font-size: 150%;
+ }
+
+ .send{
+     font-family:monospace;
+     height: 60px;
+     width: 150px;
+     margin: 0px;
+     font-size: 150%;
+     background-color: black;
+     color: white;
+ }
+
+.boton{
+    padding-left: 1425px;
+}
+
+.registro{
+    font-family: monospace;
+    padding-left: 1300px;
+}
+
+.imagen{
+    padding-right: 150px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    justify-self: right;
+}

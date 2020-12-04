@@ -63,3 +63,21 @@ body{
     height: 352.44px;
 }
 
+.loginText{
+    color: white;
+    font-family: monospace;
+    justify-self: center;
+    align-self: center;
+}
+
+.LogCar{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+    padding-left: 40px;
+}
+
+#navbarResponsive{
+    padding-left: 200px !important;
+    padding-right: 200px !important;
+}
+

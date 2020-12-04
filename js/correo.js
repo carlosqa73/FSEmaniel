@@ -10,7 +10,7 @@ let enviarMail = () => {
     let nombre = nombret.value
     //console.log(mensaje)
     
-    var link = "mailto:carlosqa73@hotmail.com"
+    var link = "mailto:gerencia@granespe.com"
         + "?cc=" + correo
         + "&subject=" + encodeURIComponent(nombre + " tiene una duda!")
         + "&body=" + encodeURIComponent(mensaje)

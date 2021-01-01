@@ -1,0 +1,87 @@
+#navbar{
+  position: sticky;
+  top: 0;
+  background-color: #000000;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+}
+
+/*#portada{
+    background-image: url(../img/portada.jpg);
+    height: 100vh;
+    width: 100%;
+}*/
+
+#finder{
+    height: 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 15px;
+    margin-top: 0;
+    width: 60vw;
+}
+
+#productos-container{
+    text-align: center;
+}
+
+.item{
+    color: #ffffff;
+    font-family: 'Sen', sans-serif;
+}
+
+.item:hover{
+    color: #DAA520;
+    text-decoration: none;
+}
+
+.tittle{
+    text-align: center;
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 48px;
+    margin: 8px;
+}
+
+body{
+    background-color: #e5e5e5;
+}
+
+#map{
+    text-align: center;
+}
+
+#footer-text{
+    color: #000000;
+}
+
+#bar{
+    color:#ffffff;
+}
+
+.img-producto{
+    width: 352.44px;
+    height: 352.44px;
+}
+
+.loginText{
+    color: white;
+    font-family: monospace;
+    justify-self: center;
+    align-self: center;
+}
+
+.LogCar{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+    padding-left: 40px;
+}
+
+#navbarResponsive{
+    padding-left: 200px !important;
+    padding-right: 200px !important;
+}
+

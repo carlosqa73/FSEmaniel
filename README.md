@@ -1,3 +1,4 @@
+
 # FSEmaniel
 Proyecto DAWM - FSEmaniel - PAOII 2020  
 
@@ -22,3 +23,26 @@ https://www.figma.com/proto/1vEEmF2L2URsLxYTzpoGh8/FSEmaniel?node-id=262966%3A34
   
 ## Enlace a la plantilla de Bootstrap
 https://startbootstrap.com/previews/agency/
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

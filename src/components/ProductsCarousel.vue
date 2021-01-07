@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-carousel :interval="4000" type="card" class="carousel" height="51vh">
+  <el-carousel :interval="0" type="card" class="carousel" height="51vh">
     <el-carousel-item class="carousel-item" v-for="(item,index) in items1" :key="index">
         <b-card
         img-top
@@ -21,7 +21,7 @@
     </el-carousel-item>
   </el-carousel> 
 
-   <el-carousel :interval="4000" type="card" class="carousel" height="51vh">
+   <el-carousel :interval="0" type="card" class="carousel" height="51vh">
     <el-carousel-item class="carousel-item" v-for="(item,index) in items2" :key="index">
         <b-card
         img-top

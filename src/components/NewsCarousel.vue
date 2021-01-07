@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="51vh">
+  <el-carousel :interval="0" type="card" height="51vh">
     <el-carousel-item v-for="(item,index) in items" :key="index">
           <!--
         :title="item.titulo"

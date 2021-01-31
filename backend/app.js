@@ -7,10 +7,11 @@ var logger = require('morgan');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-var maestroRouter = require('./routes/maestro.routes');
 var usuariosRouter = require('./routes/usuarios.routes');
 var productosRouter = require('./routes/productos.routes');
 var noticiasRouter = require('./routes/noticias.routes');
+var correosRouter = require('./routes/correos.routes');
+var telefonosRouter = require('./routes/telefonos.routes');
 
 var app = express();
 
@@ -39,10 +40,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/maestro',maestroRouter);
 app.use('/usuarios',usuariosRouter);
 app.use('/productos',productosRouter);
 app.use('/noticias',noticiasRouter);
+app.use('/correos',correosRouter);
+app.use('/telefonos',telefonosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,8 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       direccion: {
         type: DataTypes.STRING
-      }
-    });
+      },
+      
+    },
+    {  timestamps: false});
+    
   
     return Usuarios;
   };

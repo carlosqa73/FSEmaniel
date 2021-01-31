@@ -19,13 +19,30 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.maestro = require("./maestro.model.js")(sequelize, Sequelize);
-db.detalle = require("./detalle.model.js")(sequelize, Sequelize);
+db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
+db.productos = require("./productos.model.js")(sequelize, Sequelize);
+db.noticias = require("./usuarios.model.js")(sequelize, Sequelize);
+db.correos = require("./correos.model.js")(sequelize, Sequelize);
+db.telefonos = require("./telefonos.model.js")(sequelize, Sequelize);
 
-db.maestro.hasMany(db.detalle, { as: "detalles" });
-db.detalle.belongsTo(db.maestro, {
-  foreignKey: "maestroId",
-  as: "maestro",
-});
+//un usuario admin administra una o muchas noticias
+db.usuarios.hasMany(db.noticias, {foreignKey: "admin"});
+//muchas noticias son administradas por un usuario admin
+db.noticias.belongsTo(db.usuarios, {foreignKey: "admin"});
+
+//un usuario admin administra uno o muchos productos
+db.usuarios.hasMany(db.productos, {foreignKey: "admin"});
+//muchos productos son administrados por un usuario admin
+db.productos.belongsTo(db.usuarios, {foreignKey: "admin"});
+
+//un usuario tiene uno o muchos correos
+db.usuarios.hasMany(db.correos, {foreignKey: "idUsuario"});
+//muchos correos le pertenecen a un usuario
+db.correos.belongsTo(db.usuarios, {foreignKey: "idUsuario"});
+
+//un usuario tiene uno o muchos teléfonos
+db.usuarios.hasMany(db.telefonos, {foreignKey: "idUsuario"});
+//muchos teléfonos le pertenecen a un usuario
+db.telefonos.belongsTo(db.usuarios, {foreignKey: "idUsuario"});
 
 module.exports = db;

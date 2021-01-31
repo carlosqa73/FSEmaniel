@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       imagen: {
         type: DataTypes.STRING
+      },
+      admin: {
+        type: DataTypes.INTEGER
       }
     });
   

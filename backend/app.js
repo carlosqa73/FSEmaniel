@@ -12,8 +12,11 @@ var productosRouter = require('./routes/productos.routes');
 var noticiasRouter = require('./routes/noticias.routes');
 var correosRouter = require('./routes/correos.routes');
 var telefonosRouter = require('./routes/telefonos.routes');
+var comprasRouter = require('./routes/compras.routes');
 
 var app = express();
+
+const nodb = require("./collections");
 
 const db = require("./models");
 db.sequelize.sync();
@@ -45,6 +48,7 @@ app.use('/productos',productosRouter);
 app.use('/noticias',noticiasRouter);
 app.use('/correos',correosRouter);
 app.use('/telefonos',telefonosRouter);
+app.use('/compras', comprasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

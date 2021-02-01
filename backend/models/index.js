@@ -21,7 +21,7 @@ db.sequelize = sequelize;
 
 db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
 db.productos = require("./productos.model.js")(sequelize, Sequelize);
-db.noticias = require("./usuarios.model.js")(sequelize, Sequelize);
+db.noticias = require("./noticias.model.js")(sequelize, Sequelize);
 db.correos = require("./correos.model.js")(sequelize, Sequelize);
 db.telefonos = require("./telefonos.model.js")(sequelize, Sequelize);
 

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       fecha: {
-        type: DataTypes.Date
+        type: DataTypes.DATE
       },
       imagen: {
         type: DataTypes.STRING
@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       admin: {
         type: DataTypes.INTEGER
       }
-    });
+    },
+    {  timestamps: false});
   
     return Noticias;
   };

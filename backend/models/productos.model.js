@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       admin: {
         type: DataTypes.INTEGER
       }
-    });
+    },
+    {  timestamps: false});
   
     return Productos;
   };

@@ -59,9 +59,8 @@ created: function(){
 
         methods:{
             agregarAlCarrito: function(idProducto){
-              this.$emit('agregar-al-carrito', idProducto)
+              this.$eventBus.$emit('agregar-al-carrito', idProducto)
               this.$bvModal.hide(idProducto)
-              console.log("modal del producto " + idProducto + " cerrado")
             },
 
             getProductos: function(){

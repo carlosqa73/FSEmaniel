@@ -10,18 +10,23 @@
         </b-dropdown-item>
     </b-dropdown>
 
-    <img src="assets/img/cart.ico" width="40" alt="Carro" @click="carritoHandler" @agregar-al-carrito="agregarHandler"/>
+    <img src="assets/img/cart.ico" width="40" alt="Carro" @click="carritoHandler"/>
     <b-badge pill variant="danger" v-model="countProductos">{{countProductos}}</b-badge> 
     
 
     <b-modal id="modal-carrito" ok-title="Aceptar" hide-footer
     cancel-title="Cancelar" title="Carrito">
 
-        <b-list-group>
-            <b-list-group-item button>Button item</b-list-group-item>
-            <b-list-group-item button>I am a button</b-list-group-item>
-        </b-list-group>
-        
+        <b-badge variant="info" v-model="totalProductos">Total: ${{totalProductos}}</b-badge> 
+
+        <div>
+            <b-table selectable select-mode="single" hover
+            @row-clicked="selectItemHandler" :fields="campos" :items="items"></b-table>
+        </div>
+
+        <b-button @click="comprarHandler"  variant="primary" ref="btnOk" >Comprar</b-button>
+        <b-button  variant="danger" ref="btnOk" @click="deleteItemHandler" >Eliminar</b-button>
+
     </b-modal>
 
     <b-modal id="modal-login" ok-title="Aceptar" hide-footer
@@ -257,15 +262,78 @@
 
             user: {},
 
-            productos: [],
             countProductos: 0,
-            claveAux: ''
+            totalProductos: 0.0,
+            claveAux: '',
+            campos: ["Id","Descripción","Precio"],
+            items: [],
+            itemSelected: {}
         }),
 
+        created: function(){
+            this.$eventBus.$on('agregar-al-carrito', this.agregarHandler)
+        },
+
         methods:{
-            agregarHandler: function(e){
-                console.log(e + " agregado al carrito")
-                this.countProductos += 1
+
+            comprarHandler: function(){
+                if(this.countProductos != 0){
+                    if(this.status=="Iniciar sesión"){
+                        this.$bvModal.show("modal-login")
+                    }else{
+                        this.countProductos = 0
+                        this.totalProductos = 0.0
+                        this.itemSelected = {}
+                        this.items = []
+                    }
+                }
+            },
+
+            buscarItem: function(id){
+                let index = 0
+                this.items.forEach(element => {
+                    if(element.Id == id){
+                        return index
+                    }
+                    index ++
+                });
+            },
+
+            deleteItemHandler: function(){
+                if(this.countProductos != 0){
+
+                    let index = this.buscarItem(this.itemSelected.Id)
+                    this.items.splice(index,1)
+
+                    this.totalProductos -= this.itemSelected.Precio
+                    this.countProductos --
+
+                    this.itemSelected = {}
+
+                }
+            },
+
+            selectItemHandler: function(e){
+                this.itemSelected = e
+            },
+
+            agregarHandler: function(id){
+
+                fetch("https://server-emaniel.herokuapp.com/productos/find/" + id, {
+                    method: 'POST',
+                })
+                .then(response => response.json())
+                .then((res) => {
+                    let item = {
+                        "Id": res.id,
+                        "Descripción": res.descripcion,
+                        "Precio": res.precio
+                    }
+                    this.items.push(item)
+                    this.countProductos ++
+                    this.totalProductos += res.precio
+                })    
+                
             },
             okHandler: function(){
 

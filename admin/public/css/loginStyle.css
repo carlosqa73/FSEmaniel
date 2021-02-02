@@ -1,0 +1,19 @@
+body{
+    background: #e2e2e2;;
+}
+.group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#login{
+    border: solid 1px black;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    padding: 5px;
+    background: white;
+}
+

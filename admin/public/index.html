@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>FSEmaniel</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/TabLogo.png"/>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link href="css/bt-style.css" rel="stylesheet" />
+        <link href="css/adminStyle.css" rel="stylesheet" />
+
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    </head>
+    <body id="page-top">
+      
+        <!--nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/LogoMenu.png" width="80" alt="Emaniel Granespe"/></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">noticias</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">productos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav-->
+     
+        <div id="app"></div>
+
+        <!-- Modals -->
+        <!--Productos-->
+        <div class="modal fade" id="productosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalProductoTitulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 row">
+                            <label for="inputDescripcionProducto" class="col-sm-2 col-form-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputDescripcionProducto">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPrecioProducto" class="col-sm-2 col-form-label">Precio:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputPrecioProducto">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputStockProducto" class="col-sm-2 col-form-label">Stock:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputStockProducto">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputImagenProducto" class="col-sm-2 col-form-label">Imagen:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputImagenProducto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cerrarModalProducto" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" id="guardarModalProducto" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Noticias-->
+        <div class="modal fade" id="noticiasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalNoticiaTitulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 row">
+                            <label for="inputTituloNoticia" class="col-sm-2 col-form-label">Título:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputTituloNoticia">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputContenidoNoticia" class="col-sm-2 col-form-label">Contenido:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="inputContenidoNoticia" rows="4" cols="50"></textarea>  
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputFechaNoticia" class="col-sm-2 col-form-label">Fecha:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="date" id="inputFechaNoticia">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputImagenNoticia" class="col-sm-2 col-form-label">Imagen:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputImagenNoticia">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cerrarModalNoticia" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" id="guardarModalNoticia" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <!--Usuarios-->
+        <div class="modal fade" id="usuariosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalUsuarioTitulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 row">
+                            <label for="inputNombreUsuario" class="col-sm-2 col-form-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputNombreUsuario">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputApellidoUsuario" class="col-sm-2 col-form-label">Apellido:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputApellidoUsuario">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputClaveUsuario" class="col-sm-2 col-form-label">Clave:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputClaveUsuario">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputDireccionUsuario" class="col-sm-2 col-form-label">Dirección:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputDireccionUsuario">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="selectTipoUsuario" class="col-sm-2 col-form-label">Tipo:</label>
+                            <div class="col-sm-10">
+                                <select name="type" class="form-control" id="selectTipoUsuario">
+                                    <option value="admin">admin</option>
+                                    <option value="customer">customer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputCorreoUsuario" class="col-sm-2 col-form-label">Correo:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputCorreoUsuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cerrarModalUsuario" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" id="guardarModalUsuario" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">Copyright © FiZeNet 2020</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="https://instagram.com/frutossecosemaniel?igshid=1lwshcqk8bgtm" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/mariaviviana.mariscalrodriguez" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://wa.me/593987442645?text=Hola, quisiera informacion" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right">
+                        <a id="footer-text" class="mr-3" href="#!">Privacy Policy</a>
+                        <a id="footer-text" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS--
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+        <!-- Core theme JS-->
+        <!--script src="js/scripts.js"></script-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="js/productosAdmin.js"></script>
+        <script src="js/noticiasAdmin.js"></script>
+        <script src="js/usuariosAdmin.js"></script>
+        <script src="js/login.js"></script>
+    </body>
+</html>

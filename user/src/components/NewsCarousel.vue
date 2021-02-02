@@ -20,7 +20,7 @@
           <div class="d-block text-center">
             <h3>{{item.titulo}}</h3>
             <img :src="item.imagen" width="100%">
-            <p>{{item.descripcion}}</p>
+            <p>{{item.contenido}}</p>
           </div>
           <b-button class="mt-3" block @click="$bvModal.hide(item.titulo)">Cerrar</b-button>
         </b-modal>
@@ -43,10 +43,10 @@ export default {
 
   methods:{
     getNoticias: function(){
-      fetch('./data/noticias.json')
+      fetch('https://server-emaniel.herokuapp.com/noticias')
       .then(response => response.json())
       .then((data) => {
-        this.items = data.noticias
+        this.items = data
       })
       .catch((e)=>{
         console.log(e)

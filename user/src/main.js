@@ -11,6 +11,7 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

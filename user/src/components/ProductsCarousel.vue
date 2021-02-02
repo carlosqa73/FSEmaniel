@@ -6,38 +6,38 @@
         img-top
         class="mb-2 card-item">
         <img :src="item.imagen" class="img-product">
-          <p class="nombre">{{item.nombre}}: ${{item.precio}}</p>
-          <b-button href="#" variant="primary"  @click="$bvModal.show(item.nombre)">Ver</b-button>
+          <p class="nombre">{{item.descripcion}}: ${{item.precio}}</p>
+          <b-button href="#" variant="primary"  @click="$bvModal.show(item.id)">Ver</b-button>
         </b-card>
-        <b-modal :id="item.nombre" hide-footer>
+        <b-modal :id="item.id" hide-footer>
           <div class="d-block text-center">
-            <h3>{{item.nombre}}</h3>
+            <h3>{{item.descripcion}}</h3>
             <img :src="item.imagen" width="100%">
             <p>{{item.descripcion}}</p>
             <p>${{item.precio}}</p>
           </div>
-          <b-button class="mt-3" variant="primary" block @click="$bvModal.hide(item.nombre)">Agregar al carro</b-button>
+          <b-button class="mt-3" variant="primary" block @click="agregarAlCarrito(item.id)">Agregar al carro</b-button>
         </b-modal>
     </el-carousel-item>
   </el-carousel> 
 
-   <el-carousel :interval="0" type="card" class="carousel" height="51vh">
+  <el-carousel :interval="0" type="card" class="carousel" height="51vh">
     <el-carousel-item class="carousel-item" v-for="(item,index) in items2" :key="index">
         <b-card
         img-top
         class="mb-2 card-item">
           <img :src="item.imagen" class="img-product">
-          <p class="nombre">{{item.nombre}}: ${{item.precio}}</p>
-          <b-button href="#" variant="primary"  @click="$bvModal.show(item.nombre)">Ver</b-button>
+          <p class="nombre">{{item.descripcion}}: ${{item.precio}}</p>
+          <b-button href="#" variant="primary"  @click="$bvModal.show(item.id)">Ver</b-button>
         </b-card>
-        <b-modal :id="item.nombre" hide-footer>
+        <b-modal :id="item.id" hide-footer>
           <div class="d-block text-center">
-            <h3>{{item.nombre}}</h3>
+            <h3>{{item.descripcion}}</h3>
             <img :src="item.imagen" width="100%">
             <p>{{item.descripcion}}</p>
             <p>${{item.precio}}</p>
           </div>
-          <b-button class="mt-3" variant="primary" block @click="$bvModal.hide(item.nombre)">Agregar al carro</b-button>
+          <b-button class="mt-3" variant="primary" block @click="agregarAlCarrito(item.id)">Agregar al carro</b-button>
         </b-modal>
     </el-carousel-item>
   </el-carousel> 
@@ -58,15 +58,21 @@ created: function(){
         }),
 
         methods:{
+            agregarAlCarrito: function(idProducto){
+              this.$emit('agregar-al-carrito', idProducto)
+              this.$bvModal.hide(idProducto)
+              console.log("modal del producto " + idProducto + " cerrado")
+            },
+
             getProductos: function(){
-                fetch('./data/productos.json')
+                fetch('https://server-emaniel.herokuapp.com/productos')
                 .then(response => response.json())
                 .then((data) => {
                     
-                    let mitad = Math.floor(data.productos.length/2)
+                    let mitad = Math.floor(data.length/2)
 
-                    this.items1 = data.productos.slice(0,mitad)
-                    this.items2 = data.productos.slice(mitad)
+                    this.items1 = data.slice(0,mitad)
+                    this.items2 = data.slice(mitad)
 
                 })
                 .catch((e)=>{

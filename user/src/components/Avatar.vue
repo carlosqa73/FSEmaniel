@@ -5,11 +5,24 @@
     <b-dropdown size="sm" variant="primary" text="" >
         <b-dropdown-item href="#" @click="loginHandler"
         v-model="status">
+            
             {{status}}
         </b-dropdown-item>
     </b-dropdown>
 
-    <img src="assets/img/cart.ico" width="40" alt="Carro"/>
+    <img src="assets/img/cart.ico" width="40" alt="Carro" @click="carritoHandler" @agregar-al-carrito="agregarHandler"/>
+    <b-badge pill variant="danger" v-model="countProductos">{{countProductos}}</b-badge> 
+    
+
+    <b-modal id="modal-carrito" ok-title="Aceptar" hide-footer
+    cancel-title="Cancelar" title="Carrito">
+
+        <b-list-group>
+            <b-list-group-item button>Button item</b-list-group-item>
+            <b-list-group-item button>I am a button</b-list-group-item>
+        </b-list-group>
+        
+    </b-modal>
 
     <b-modal id="modal-login" ok-title="Aceptar" hide-footer
     cancel-title="Cancelar" title="Iniciar sesión">
@@ -122,7 +135,7 @@
                         <b-form-input
                         id="input-mail"
                         type="email"
-                        v-model="newUser.mail"
+                        v-model="newMail.correo"
                         placeholder="Ingrese su correo"
                         required
                         :state="validarMail"
@@ -232,15 +245,28 @@
             newUser:{
                 nombre: '',
                 apellido: '',
-                mail: '',
-                direccion: '',
-                clave: ''
+                clave: '',
+                tipoUsuario: 'customer',
+                direccion: ''
             },
 
+            newMail:{
+                idUsuario: '',
+                correo: ''
+            },
+
+            user: {},
+
+            productos: [],
+            countProductos: 0,
             claveAux: ''
         }),
 
         methods:{
+            agregarHandler: function(e){
+                console.log(e + " agregado al carrito")
+                this.countProductos += 1
+            },
             okHandler: function(){
 
                 let validacionMail = (this.usuario.includes("@")) && 
@@ -249,15 +275,51 @@
                 let validacionLogin = this.clave.length >= 5 && this.clave.length <= 12
 
                 if(validacionMail && validacionLogin){
-                    this.status = "Cerrar sesión"
                     this.data.usuario = this.usuario
                     this.data.clave = this.clave
                     this.usuario = ''
                     this.clave = ''
                     this.$bvModal.hide("modal-login")
-                    alert("Sesión iniciada" + JSON.stringify(this.data))
+
+                    fetch("https://server-emaniel.herokuapp.com/correos/findByDireccion/" + this.data.usuario, {
+                        method: 'POST',
+                    })
+                    .then(response => response.json())
+                    .then((res) => {
+                        if(res != "Sin resultados"){
+                            let idUser = res.idUsuario
+
+                            fetch("https://server-emaniel.herokuapp.com/usuarios/find/" + idUser, {
+                                method: 'POST',
+                            })
+                            .then(response => response.json())
+                            .then((res) => {
+                                if(res != "Sin resultados"){
+                                    this.user = res
+                                    if(res.clave == this.data.clave){
+                                        this.status = "Cerrar sesión"
+                                        alert("Bienvenido " + res.nombre)
+                                    }else{
+                                        alert("Clave incorrecta")
+                                    }
+                                }
+                            })
+            
+
+                        }
+                    })
+                    .catch((error) => {
+                        alert("Usuario no registrado")
+                        console.log(error)
+                    })
+                    
                 }
 
+            },
+
+            carritoHandler: function(){
+                this.$bvModal.show("modal-carrito")
+                
             },
 
             loginHandler: function(){
@@ -265,7 +327,7 @@
                     this.$bvModal.show("modal-login")
                 }else{
                     this.status = "Iniciar sesión"
-                    alert("Sesión finalizada: "+JSON.stringify(this.data))
+                    alert(JSON.stringify(this.user))
                 }
             },
 
@@ -275,8 +337,8 @@
             },
 
             validarPrimerPaso:function(){
-                let validarMail = (this.newUser.mail.includes("@")) && 
-                (this.newUser.mail.includes(".com") || this.newUser.mail.includes(".edu") )
+                let validarMail = (this.newMail.correo.includes("@")) && 
+                (this.newMail.correo.includes(".com") || this.newMail.correo.includes(".edu") )
 
                 return validarMail && this.newUser.apellido != "" && this.newUser.nombre != ""
 
@@ -289,14 +351,53 @@
             },
 
             registroFinalizado:function(){
-                alert(JSON.stringify(this.newUser))
+                
                 this.$bvModal.hide("modal-registro")
-                this.newUser.nombre=""
-                this.newUser.apellido=""
-                this.newUser.clave=""
-                this.newUser.mail=""
-                this.newUser.direccion=""
-                this.claveAux = ""
+        
+                fetch("https://server-emaniel.herokuapp.com/usuarios/save", {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(this.newUser)
+                })
+                .then(response => response.json())
+                .then((usuario)=>{
+                    console.log(usuario)
+
+                    this.newMail.idUsuario = usuario.id
+
+                    fetch("https://server-emaniel.herokuapp.com/correos/save", {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(this.newMail)
+                    })
+                    .then((data)=>{
+                        console.log(data)
+
+
+                        alert("Usuario registrado")
+
+                        this.newUser.nombre=""
+                        this.newUser.apellido=""
+                        this.newUser.clave=""
+                        this.newMail.correo=""
+                        this.newMail.idUsuario = ""
+                        this.newUser.direccion=""
+                        this.claveAux = ""
+
+
+                    }) 
+                    .catch((err)=>{
+                        alert("No se pudo registrar el correo\n" + err)
+                    })  
+
+
+                })
+                .catch((err) =>{
+                    alert("No se pudo registrar el usuario\n" + err)
+                })
+
             }
         },
 
@@ -320,8 +421,8 @@
             },
 
             validarMail(){
-                return (this.newUser.mail.includes("@")) && 
-                (this.newUser.mail.includes(".com") || this.newUser.mail.includes(".edu") )
+                return (this.newMail.correo.includes("@")) && 
+                (this.newMail.correo.includes(".com") || this.newMail.correo.includes(".edu") )
             },
 
             validarClave(){

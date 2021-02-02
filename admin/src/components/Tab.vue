@@ -3,7 +3,23 @@
   <b-tabs content-class="mt-3" justified>
 
     <!---------------------------------------------------->
-    <b-tab title="Reportes" active><p></p></b-tab>
+    <b-tab title="Reportes" active>
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">Estadísticas</h2>
+      </div>
+
+      <div id = "estadisticas">
+      </div>
+
+
+      <div class="text-center">
+        <h2 class="section-heading text-uppercase">Reportes</h2>
+      </div>
+
+      <div id = "reportes">
+      </div>
+      
+    </b-tab>
     <!---------------------------------------------------->
     <b-tab title="Noticias">
 

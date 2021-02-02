@@ -267,7 +267,7 @@
             claveAux: '',
             campos: ["Id","Descripción","Precio"],
             items: [],
-            itemSelected: {}
+            itemSelected: null
         }),
 
         created: function(){
@@ -281,10 +281,35 @@
                     if(this.status=="Iniciar sesión"){
                         this.$bvModal.show("modal-login")
                     }else{
+                        
+                        this.items.forEach((element) => {
+                            let compra = {
+                                "usuario": this.user.id,
+                                "producto": element.Id,
+                                "fecha":  new Date(),
+                                "cantidad": 1
+                            }
+                        
+                            fetch("https://server-emaniel.herokuapp.com/compras/save", {
+                                method: 'POST',
+                                mode: 'cors',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify(compra)
+                            })
+                            .then((data)=>{
+                                console.log(data)
+                            }) 
+                            .catch((err)=>{
+                                alert(err)
+                            }) 
+                        
+                        })
+
                         this.countProductos = 0
                         this.totalProductos = 0.0
-                        this.itemSelected = {}
+                        this.itemSelected = null
                         this.items = []
+
                     }
                 }
             },
@@ -300,7 +325,7 @@
             },
 
             deleteItemHandler: function(){
-                if(this.countProductos != 0){
+                if(this.itemSelected != null){
 
                     let index = this.buscarItem(this.itemSelected.Id)
                     this.items.splice(index,1)
@@ -308,7 +333,7 @@
                     this.totalProductos -= this.itemSelected.Precio
                     this.countProductos --
 
-                    this.itemSelected = {}
+                    this.itemSelected = null
 
                 }
             },

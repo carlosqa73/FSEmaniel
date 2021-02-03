@@ -9,6 +9,9 @@
       </div>
 
       <div id = "estadisticas">
+        <canvas id="myChart1" class="graph" width="300" height="100"></canvas>
+        <canvas id="myChart2" class="graph" width="300" height="100"></canvas>
+        <canvas id="myChart3" class="graph" width="300" height="100"></canvas>
       </div>
 
 
@@ -175,4 +178,33 @@ export default {
 }
 
 
+
 </script>
+
+<style scoped>
+
+  #estadisticas {
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+  }
+
+  .graph{
+    max-width: 400px;
+      max-height: 200px;
+      margin: 20px;
+  }
+
+  @media(min-width: 900px){
+    #estadisticas {
+      display: flex;
+      justify-content: center;
+    }
+
+    .graph{
+      max-width: 500px;
+      max-height: 300px;
+      margin: 20px;
+    }
+  }
+
+</style>

@@ -87,9 +87,33 @@ body{
 #my-form-status{
     text-align: center;
     padding: 5px;
-    margin: 0 auto;
+    margin: 11px auto;
     max-width: 500px;
     width: 90%;
     border-radius: 8px;
 }
-
+#my-form-status.success {
+    background-color: rgb(211, 250, 153);
+    animation: status 4s ease forwards;
+    max-width: 259px;
+  }
+#my-form-status.error {
+    background-color: rgb(250, 129, 92);
+    color: white;
+    animation: status 4s ease forwards;
+    max-width: 500px;
+  }
+  @keyframes my-form-status {
+    0% {
+      opacity: 1;
+      pointer-events: all;
+    }
+    90% {
+      opacity: 1;
+      pointer-events: all;
+    }
+    100% {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }

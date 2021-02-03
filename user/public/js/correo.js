@@ -11,12 +11,17 @@ window.addEventListener("DOMContentLoaded", function() {
     
     function success() {
       form.reset();
+      status.classList.add("success");
+      status.classList.remove("error");
       //button.style = "display: none ";
       status.innerHTML = "Gracias!";
     }
 
     function error() {
+      status.classList.add("error");
+      status.classList.add("success");
       status.innerHTML = "Asegurese de llenar todos los campos";
+      
     }
 
     // handle the form submission event
@@ -34,8 +39,7 @@ window.addEventListener("DOMContentLoaded", function() {
     var nombre = document.getElementById("name");
     var correo = document.getElementById("email");
     var telefono = document.getElementById("phone");
-    var mensaje = document.getElementById("message")
-    console.log(correo.value)
+    var mensaje = document.getElementById("message");
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader("Accept", "application/json");

@@ -199,7 +199,7 @@ export default {
 
         producto: null,
 
-        fecha: new Date("04/02/2021"),
+        fecha: new Date("02/04/2021"),
 
         empty: true
 

@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", function() {
     // get the form elements defined in your form HTML above
     
     var form = document.getElementById("contactForm");
-    console.log(form);
     //var button = document.getElementById("sendMessageButton");
     var status = document.getElementById("my-form-status");
 
@@ -32,12 +31,17 @@ window.addEventListener("DOMContentLoaded", function() {
   // helper function for sending an AJAX request
 
   function ajax(method, url, data, success, error) {
+    var nombre = document.getElementById("name");
+    var correo = document.getElementById("email");
+    var telefono = document.getElementById("phone");
+    var mensaje = document.getElementById("message")
+    console.log(correo.value)
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onreadystatechange = function() {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
-      if (xhr.status === 200) {
+      if (xhr.status === 200 && nombre.value && correo.value && telefono.value && mensaje.value) {
         success(xhr.response, xhr.responseType);
       } else {
         error(xhr.status, xhr.response, xhr.responseType);

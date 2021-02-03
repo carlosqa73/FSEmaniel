@@ -20,6 +20,19 @@
       </div>
 
       <div id = "reportes">
+
+        <div class="selector">
+          <b-form-select v-model="producto" :options="productos"></b-form-select>
+          <b-form-datepicker date-format-options="DD/MM/YY" id="example-datepicker" v-model="fecha" class="mb-2"></b-form-datepicker>
+        </div>
+
+        <b-button variant="primary" @click="cargarHandler">Cargar</b-button>
+        <b-button variant="primary" @click="mostrarHandler">Mostrar</b-button>
+
+        <div id="resultados">
+          <b-table striped hover :fields="fields" :items="items"></b-table>
+        </div>
+
       </div>
       
     </b-tab>
@@ -30,8 +43,10 @@
         <h2 class="section-heading text-uppercase">Noticias</h2>
       </div>
 
-      <input class = "finder" id = "finder1" type="text" placeholder="Buscar Noticia" title="Ingresa el título de la noticia">
-      <div id="agregarNoticia"></div>
+      <div class="group">
+        <div id="buscarNoticia"></div>
+        <div id="agregarNoticia"></div>
+      </div>
 
 
       <!--Inicio tabla de noticias-->
@@ -73,9 +88,11 @@
       <div class="text-center">
         <h2 class="section-heading text-uppercase">Productos</h2>
       </div>
-
-      <input class = "finder" id = "finder2" type="text" placeholder="Buscar producto" title="Ingresa el nombre del producto">
-      <div id="agregarProducto"></div>
+      
+      <div class="group">
+        <div id="buscarProducto"></div>
+        <div id="agregarProducto"></div>
+      </div>
       
       <!--Inicio tabla de productos-->
       <div class="container bootstrap snippets bootdey">
@@ -112,9 +129,11 @@
       <div class="text-center">
         <h2 class="section-heading text-uppercase">Usuarios</h2>
       </div>
-
-      <input class = "finder" id = "finderUsuarios" type="text" placeholder="Buscar usuario" title="Ingresa el nombre del usuario">
-      <div id="agregarUsuario"></div>
+      
+      <div class="group">
+        <div id="buscarUsuario"></div>
+        <div id="agregarUsuario"></div>
+      </div>
 
       <!--Inicio tabla de productos-->
       <div class="container bootstrap snippets bootdey">
@@ -164,7 +183,25 @@ export default {
           descripcion: ''
         },
 
-        show: true
+        show: true,
+
+        items: [],
+
+        productos: [],
+
+        idProductos: [],
+
+        compras: [],
+
+        usuarios: [],
+
+        fields: ["Nombre","Apellido","Cantidad"],
+
+        producto: null,
+
+        fecha: new Date("04/02/2021"),
+
+        empty: true
 
     }
       
@@ -173,7 +210,78 @@ export default {
       onSubmit(event) {
         event.preventDefault()
         alert(JSON.stringify(this.form))
+      },
+
+      getIdProducto: function(){
+        let index = 0
+        let flag = true
+        while(flag){
+          if(this.productos[index] == this.producto){
+            break
+          }
+          index++
+        }
+        return this.idProductos[index]
+      },
+
+      mostrarHandler: function(){
+        if(this.producto!=null && this.fecha!=null){
+          this.items = []
+          let idProducto = this.getIdProducto()
+      
+          this.compras.forEach(compra =>{
+            
+            let date = compra.fecha.split("T")[0]
+          
+            if(compra.producto == idProducto && date == this.fecha){
+              let idUsuario = compra.usuario
+              this.usuarios.forEach(usuario =>{
+                
+                if(usuario.id == idUsuario){
+          
+                  let item = {
+                    "Nombre": usuario.nombre,
+                    "Apellido": usuario.apellido,
+                    "Cantidad": compra.cantidad
+                  }
+
+                  this.items.push(item)
+                }
+              })
+            }
+          })
+          
+        }
+      },
+
+      cargarHandler: function(){
+
+        if(this.empty){
+          fetch("https://server-emaniel.herokuapp.com/productos")
+          .then(response => response.json())
+          .then((data) => {
+            data.forEach(element => {
+              this.productos.push(element.descripcion)
+              this.idProductos.push(element.id)
+            })
+          })
+
+          fetch("https://server-emaniel.herokuapp.com/compras")
+          .then(response => response.json())
+          .then((data) => {
+            this.compras = data
+          })
+
+          fetch("https://server-emaniel.herokuapp.com/usuarios")
+          .then(response => response.json())
+          .then((data) => {
+            this.usuarios = data
+          })
+
+          this.empty = false
+        }
       }
+
     }
 }
 
@@ -207,4 +315,14 @@ export default {
     }
   }
 
+  .selector{
+    display: flex;
+  }
+
+  .group{
+    display: flex;
+    justify-content: center;
+  }
+
 </style>
+

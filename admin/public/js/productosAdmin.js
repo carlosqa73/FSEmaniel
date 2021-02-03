@@ -11,6 +11,10 @@ let inputPrecio = document.getElementById("inputPrecioProducto")
 let inputStock = document.getElementById("inputStockProducto")
 let inputImagen = document.getElementById("inputImagenProducto")
 
+let findProducto = document.createElement("input")
+findProducto.setAttribute("class","finder")
+findProducto.setAttribute("placeholder","Buscar producto")
+
 let cargarCrudProductos = () => {
 
     fetch("https://server-emaniel.herokuapp.com/productos")
@@ -117,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let content = document.getElementById("agregarProducto");
     //<b-button variant="primary" id = "agregarProducto">Agregar</b-button>
     content.appendChild(btnAgregarProducto)
-    
+
+    let contentFinder = document.getElementById("buscarProducto");
+    contentFinder.appendChild(findProducto)
 })
 
 let actualizarCrudProductos = () =>{
@@ -216,7 +222,4 @@ let buscarCrudProductos = (e) =>{
   
 }
 
-let inputCrudProductos = document.getElementById("finder2")
-inputCrudProductos.addEventListener('keyup', buscarCrudProductos);
-
-  
+findProducto.addEventListener('keyup', buscarCrudProductos);

@@ -11,6 +11,10 @@ let inputContenido = document.getElementById("inputContenidoNoticia")
 let inputFecha = document.getElementById("inputFechaNoticia")
 let inputImagenNoticia = document.getElementById("inputImagenNoticia")
 
+let findNoticia = document.createElement("input")
+findNoticia.setAttribute("class","finder")
+findNoticia.setAttribute("placeholder","Buscar noticia")
+
 let cargarCrudNoticias = () =>{
 
     fetch("https://server-emaniel.herokuapp.com/noticias")
@@ -112,6 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let content = document.getElementById("agregarNoticia");
     //<b-button variant="primary" id = "agregarProducto">Agregar</b-button>
     content.appendChild(btnAgregarNoticia)
+
+    let contentFinder = document.getElementById("buscarNoticia");
+    contentFinder.appendChild(findNoticia)
     
 })
 
@@ -210,5 +217,4 @@ let buscarCrudNoticias = (e) =>{
   
 }
 
-let inputCrudNoticias = document.getElementById("finder1")
-inputCrudNoticias.addEventListener('keyup', buscarCrudNoticias);
+findNoticia.addEventListener('keyup', buscarCrudNoticias);

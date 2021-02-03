@@ -12,6 +12,10 @@ let inputDireccion = document.getElementById("inputDireccionUsuario")
 let inputTipo = document.getElementById("selectTipoUsuario")
 let inputCorreo = document.getElementById("inputCorreoUsuario")
 
+let findUsuario = document.createElement("input")
+findUsuario.setAttribute("class","finder")
+findUsuario.setAttribute("placeholder","Buscar usuario por nombre")
+
 let cargarCrudUsuarios = () =>{
     fetch("https://server-emaniel.herokuapp.com/usuarios")
     .then(response => response.json())
@@ -23,6 +27,7 @@ let cargarCrudUsuarios = () =>{
 
             let tdNombre = document.createElement("td")
             let pNombre = document.createElement("p")
+            pNombre.setAttribute("class","nombre-usuario")
             pNombre.textContent = element.nombre
             tdNombre.appendChild(pNombre)
 
@@ -124,6 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let content = document.getElementById("agregarUsuario");
     //<b-button variant="primary" id = "agregarProducto">Agregar</b-button>
     content.appendChild(btnAgregarUsuario)
+
+    let contentFinder = document.getElementById("buscarUsuario");
+    contentFinder.appendChild(findUsuario)
 })
 
 let editCorreo = (mail) => {
@@ -255,3 +263,27 @@ btnGuardarUsuario.addEventListener("click",()=>{
         agregarUsuario()
     }
 })
+
+let buscarCrudUsuarios = (e) =>{
+    let textInput = e.target.value
+    let key = textInput.toLowerCase()
+
+    let elements = document.getElementsByClassName("nombre-usuario")
+
+    for(let element of elements){
+        let words = element.textContent.toLowerCase()
+    
+        item = element.parentElement.parentElement
+    
+        if(!(words.includes(key))){
+            item.style.display = "none"
+
+        }else{
+            item.style.display = ""
+        }
+
+    }
+  
+}
+
+findUsuario.addEventListener('keyup', buscarCrudUsuarios);
